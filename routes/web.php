@@ -36,6 +36,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/productos/delete/{id}', [ProductoController::class, 'destroy']);
     Route::post('/productos/addLocalizacion/{id}', [ProductoController::class, 'addLocalizacion']);
     Route::get('/productos/showProductoLocalizacion/{id}', [ProductoController::class, 'showProductoLocalizacion']);
+    Route::post('/productos/buscar', [ProductoController::class, 'buscar'])->name('productos.buscar');
+
     //rutas de categorias
     Route::resource('/categorias', CategoriaController::class);
     Route::get('/categorias/delete/{id}', [CategoriaController::class, 'destroy']);

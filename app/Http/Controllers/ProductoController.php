@@ -114,4 +114,15 @@ class ProductoController extends Controller
 
         return redirect()->route('productos.index');
     }
+
+    public function pintarProductos(Producto $productos)
+    {
+
+        echo "hola";
+    }
+
+    public function buscar(Request $request)
+    {
+        echo "aqui";
+    }
 }

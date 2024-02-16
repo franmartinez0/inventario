@@ -44,50 +44,55 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($productos as $producto)
-                    <tr
-                        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                        <td scope="row"
-                            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {{ $producto->codigo }}
-                        </td>
-                        <td class="px-6 py-4">
-                            {{ $producto->modelo }}
-                        </td>
-                        <td class="px-6 py-4">
-                            {{ $producto->fabricante }}
-                        </td>
-                        <td class="px-6 py-4">
-                            {{ $producto->descripcion }}
-                        </td>
-                        <td class="px-6 py-4">
-                            {{ $producto->stock }}
-                        </td>
-                        <td class="px-6 py-4">
-                            {{ $producto->estado }}
-                        </td>
-                        <td class="px-6 py-4">
-                            <img src="{{ asset('storage/app/public/producto_' . $producto->id . '.jpg') }}">
-                        </td>
-                        <td class="px-6 py-4">
-                            <a
-                                href="/localizacions/{{ $producto->localizacion_id }}"class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Mostrar</a>
-                            <a
-                                href="/productos/showProductoLocalizacion/{{ $producto->id }}"class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Añadir</a>
-                        </td>
-                        <td class="px-6 py-4 text-center">
-                            <a href="/productos/{{ $producto->id }}"
-                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Ver </a>
+                @if ($productos->isEmpty())
+                    <p class="text-white">No se encontraron resultados.</p>
+                @else
+                    @foreach ($productos as $producto)
+                        <tr
+                            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            <td scope="row"
+                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                {{ $producto->codigo }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $producto->modelo }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $producto->fabricante }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $producto->descripcion }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $producto->stock }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $producto->estado }}
+                            </td>
+                            <td class="px-6 py-4">
+                                <img src="{{ asset('storage/producto_' . $producto->id . '.jpg') }}">
 
-                            <a href="/productos/delete/{{ $producto->id }}"
-                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Borrar
-                            </a>
-                            <a href="/productos/{{ $producto->id }}/edit"
-                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Editar
-                            </a>
-                        </td>
-                    </tr>
-                @endforeach
+                            </td>
+                            <td class="px-6 py-4">
+                                <a
+                                    href="/localizacions/{{ $producto->localizacion_id }}"class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Mostrar</a>
+                                <a
+                                    href="/productos/showProductoLocalizacion/{{ $producto->localizacion_id }}"class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Añadir</a>
+                            </td>
+                            <td class="px-6 py-4 text-center">
+                                <a href="/productos/{{ $producto->id }}"
+                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Ver </a>
+
+                                <a href="/productos/delete/{{ $producto->id }}"
+                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Borrar
+                                </a>
+                                <a href="/productos/{{ $producto->id }}/edit"
+                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Editar
+                                </a>
+                            </td>
+                        </tr>
+                    @endforeach
+                @endif
             </tbody>
         </table>
         {{ $productos->links() }}
