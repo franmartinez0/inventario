@@ -118,7 +118,7 @@ class ProductoController extends Controller
     public function pintarProductos(Producto $productos)
     {
 
-        echo "hola";
+        echo "pintando productos";
     }
 
     public function buscar(Request $request)
